@@ -19,6 +19,40 @@ public class RentACatImpl implements RentACat {
 
 	public boolean returnCat(int id) {
 		// TODO: Fill in
+		for (Cat c : cats) 
+		{
+			/* if (c.getId() == id && c.getRented())
+			{
+				System.out.println("Welcome back, " + c.getName() + "!");
+				return true;
+			}
+
+			if (c.getId() == id && !c.getRented())
+			{
+				System.out.println(c.getName() + " is already here!");
+				return true;
+			}*/
+			if (c.getId() == id)
+			{
+				if (c.getRented())
+				{
+					System.out.println("Welcome back, " + c.getName() + "!");
+					return true;
+				}
+				else
+				{
+					System.out.println(c.getName() + " is already here!");
+					return false;
+				}
+			}
+		}
+		/* for (int i = 0; i < cats.size(); i++)
+		{
+			if (cats.get(i).getId() == id && cats.get(i).getRented())
+			{
+				return true;
+			}
+		}*/
 		return false;
 	}
 
@@ -34,6 +68,22 @@ public class RentACatImpl implements RentACat {
 
 	public boolean rentCat(int id) {
 		// TODO: Fill in
+		for (Cat c : cats) 
+		{
+			if (c.getId() == id && !c.getRented()) 
+			{
+				c.rentCat();  // Mark the cat as rented
+				System.out.print(c.getName() + " has been rented.\n");
+				return true;
+			}
+			
+			if (c.getId() == id && c.getRented())
+			{
+				System.out.print("Sorry, " + c.getName() + " is not here!\n");
+				return false;
+			}
+		}
+		System.out.print("Invalid cat ID.\n");
 		return false;
 	}
 
@@ -48,6 +98,27 @@ public class RentACatImpl implements RentACat {
 
 	public boolean renameCat(int id, String name) {
 		// TODO: Fill in
+		if (cats == null)
+		{
+			return false;
+		}
+		for (Cat c : cats) 
+		{
+			if (c.getId() == id) 
+			{
+				c.renameCat(name);
+				return true;
+			}
+		}
+		/* for (int i = 0; i < cats.size(); i++)
+		{
+			if (cats.get(i).getId() == id)
+			{
+				cats.get(i).renameCat(name);
+				return true;
+			}
+		}*/
+		System.out.print("Invalid cat ID.\n");
 		return false;
 	}
 
@@ -63,7 +134,33 @@ public class RentACatImpl implements RentACat {
 
 	public String listCats() {
 		// TODO: Fill in
-		return "WRITE CODE FOR THIS";
+		StringBuilder sb = new StringBuilder();
+		for (Cat cat : cats) {
+			sb.append("ID ").append(cat.getId()).append(". ").append(cat.getName()).append("\n");
+		}
+		return sb.toString();  
+
+		// String result = "";
+		//StringBuilder sb = new StringBuilder();
+		/* for (Cat c : cats) 
+		{
+			if (!c.getRented())
+			{
+				String curr = c.toString();
+				result += curr + "\n";
+				//sb.append(c.toString()); // toString() already adds a newline.
+			}
+		} */
+		/* for (int i = 0; i < cats.size(); i++)
+		{
+			if (!cats.get(i).getRented())
+			{
+				String curr = cats.get(i).toString();
+				result += curr;
+			}
+		}*/
+		// return result;
+		//return sb.toString();
 	}
 
 	/**
