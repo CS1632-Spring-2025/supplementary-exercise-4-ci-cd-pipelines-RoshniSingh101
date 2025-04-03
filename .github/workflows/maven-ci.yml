@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # default is read permissions, but to debug update_depedency_graph error, need to change to write
+      contents: write # default is read permissions, but to debug update_depedency_graph error, need to change to write (has read permissions built within it)
       # passes, and transitive was child dependencies
 
     steps:
